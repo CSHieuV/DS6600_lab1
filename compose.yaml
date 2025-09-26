@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j-container
+    ports:
+      - "7474:7474"  # HTTP port for Neo4j Browser web interface
+      - "7687:7687"  # Bolt port for database connections
+    environment:
+      - NEO4J_AUTH=${NEO4J_AUTH}
+    volumes:
+      - neo4jdata:/data
+    restart: unless-stopped
+
+volumes:
+  neo4jdata:
+    driver: local
